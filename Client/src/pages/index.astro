@@ -2,6 +2,9 @@
 import Xbox from '../components/icons/Xbox.astro';
 import PlayStation from '../components/icons/PlayStation.astro';
 import Nintendo from '../components/icons/Nintendo.astro';
+import Steam from '../components/icons/Steam.astro';
+import EpicGames from '../components/icons/EpicGames.astro';
+import Twitch from '../components/icons/Twitch.astro';
 import LayoutGuest from '../layouts/LayoutGuest.astro';
 ---
 
@@ -9,8 +12,12 @@ import LayoutGuest from '../layouts/LayoutGuest.astro';
 	<article class="bg-gradient-to-b from-slate-300 via-slate-600 to-slate-100 pb-3 rounded-b-full">
 		<div class="bg-[url(/images/background.png)] rounded-b-full bg-center">
 			<main class="flex flex-col -mt-2 bg-gradient-to-b from-[#151515] via-[#151515]/80 to-[#151515]/20 px-52 justify-center items-center h-screen w-full gap-4 rounded-b-full">
+				<a target="_blank" href="https://www.twitch.tv/midudev" class="p-1 bg-[#8C44F7] rounded-full px-3 text-sm flex items-center gap-1">
+					<Twitch />
+					midudev en Twitch
+				</a>
 				<h1 class="font-bold text-6xl text-center w-11/12 uppercase font-Cal">La mejor reseña solo puede venir de un verdadero <span class="bg-slate-300 px-2 text-black -skew-12">gamer .</span></h1>
-				<p class="text-zinc-300/80 w-8/12 text-center font-Inter">¿A punto de descargar un juego? Primero, descubre lo que la comunidad gamer tiene que decir. Opiniones reales, sin filtros.</p>
+				<p class="text-zinc-300 w-8/12 text-center font-Inter">¿A punto de descargar un juego? Primero, descubre lo que la comunidad gamer tiene que decir. Opiniones reales, sin filtros.</p>
 				<div class="flex gap-3 mt-2">
 					<a href="" class="bg-slate-300 p-2 px-6 rounded-full text-black flex gap-2 items-center">
 						<span>Conocer ahora</span>
@@ -28,14 +35,16 @@ import LayoutGuest from '../layouts/LayoutGuest.astro';
 			</main>
 		</div>
 	</article>
-	<article class="h-screen flex justify-between items-center px-40 relative border-b-4 border-white">
+	<article class="py-96 h-screen flex justify-between items-center px-40 relative">
 		<div class="relative z-10 w-full flex flex-col gap-4 p-10 rounded-2xl bg-zinc-900/80 backdrop-blur-sm border-t border-b border-b-zinc-700">
 			<h2 class="text-6xl">Opiniones de mas de 1,000 Juegos de todas las plataformas mas populares.</h2>
 			<div class=" flex items-center gap-4">
 				<Xbox />
 				<PlayStation />
 				<Nintendo />
-				<h3 class="text-3xl">... Entre otras mas</h3>
+				<Steam />
+				<EpicGames />
+				<span class="text-zinc-300">Y muchas mas</span>
 			</div>
 			<div class="absolute p-18 -z-10 bg-slate-300/80 blur-2xl"></div>
 			<div class="absolute p-12 -z-10 right-0 bottom-0 bg-slate-300/50 blur-2xl"></div>
@@ -45,6 +54,14 @@ import LayoutGuest from '../layouts/LayoutGuest.astro';
 		</figure>
 		
 	</article>
-	<article class="h-screen bg-white flex justify-between items-center px-40 relative">
+	<article class="py-[430px] h-screen bg-white flex justify-end px-36 relative">
+		<figure class="w-full absolute left-0 bottom-0 flex">
+			<img src="/images/theLastOfUss.png" alt="" class="w-5/12">
+		</figure>
+		<div class="w-6/12">
+			<h2 class="text-zinc-700 font-medium text-5xl">Encuentra titulos populares como "The Last Of Us: part l"</h2>
+		</div>
 	</article>
+	<article class="py-96 h-screen bg-[#151515] flex justify-between items-center px-40 relative"></article>
+	
 </Layout>
