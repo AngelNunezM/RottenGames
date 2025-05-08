@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GameCard from '../components/GameCard.astro';
+
+interface Game {
+  name: string;
+  background_image: string;
+  rating: number;
+  released: string;
+}
+
+let gameName = '';
+let results: Game[] = [];
+
+if (Astro.request.method === 'POST') {
+  const formData = await Astro.request.formData();
+  gameName = formData.get('gameName')?.toString() || '';
+  
+  try {
+    const apiUrl = new URL('/api/games', Astro.url.origin);
+    const response = await fetch(apiUrl.toString(), {
+      method: 'POST',
+      body: formData
+    });
+    if (response.ok) {
+      const data = await response.json();
+      results = data.results || [];
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+---
+<Layout title="Buscar Juegos">
+  <form method="POST" class="flex gap-2 mb-6">
+    <input 
+      type="text" 
+      name="gameName" 
+      placeholder="Nombre del juego"
+      value={gameName}
+      required
+      class="flex-1 p-2 rounded border border-gray-600 bg-gray-800 text-white"
+    />
+    <button 
+      type="submit" 
+      class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+    >
+      Buscar
+    </button>
+  </form>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {results.length > 0 ? (
+      results.map((game) => (
+        <GameCard 
+          name={game.name}
+          background_image={game.background_image}
+          rating={game.rating}
+          released={game.released}
+        />
+      ))
+    ) : gameName ? (
+      <p class="text-center text-gray-400">No se encontraron resultados para "{gameName}".</p>
+    ) : (
+      <p class="text-center text-gray-400">Introduce el nombre de un juego y pulsa “Buscar”.</p>
+    )}
+  </div>
+</Layout>

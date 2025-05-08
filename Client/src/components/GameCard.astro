@@ -1,0 +1,18 @@
+---
+interface Props {
+  name: string;
+  background_image: string;
+  rating: number;
+  released: string;
+}
+
+const { name, background_image, rating, released } = Astro.props as Props;
+---
+<div class="bg-gray-800 text-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow max-w-xs mx-auto">
+  <img src={background_image} alt={name} class="w-full h-48 object-cover" />
+  <div class="p-4 text-center">
+    <h2 class="text-lg font-semibold mb-2">{name}</h2>
+    <p class="text-sm">⭐ Rating: {rating}</p>
+    <p class="text-sm">📅 Lanzamiento: {released}</p>
+  </div>
+</div>
