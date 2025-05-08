@@ -15,14 +15,15 @@ const { title } = Astro.props;
 	</head>
 	<body class="relative">
 		<header class="px-52 absolute p-5 flex items-center justify-between w-full rounded-b-2xl">
-			<h1 class="font-medium text-2xl flex items-center">Rotten<span class="text-indigo-500 font-bold text-shadow-xs text-shadow-[#473f00]">Games</span></h1>
+			<h1 class="font-medium text-2xl flex items-center">Rotten<span class="text-slate-300 font-bold text-shadow-xs text-shadow-[#473f00]">Games</span></h1>
 			<nav class="text-sm flex gap-6">
-				<a href="" class="text-[#FF2DF1]">Inicio</a>
+				<a href="" class="text-[#ffffff]">Inicio</a>
 				<a href="" class="text-zinc-400">Nosotros</a>
+				<a href="" class="text-zinc-400">Juegos</a>
 				<a href="" class="text-zinc-400">Ayuda</a>
 			</nav>
 		</header>
-		<section class="flex flex-col gap-10">
+		<section class="flex flex-col gap-24">
 			<slot />
 		</section>
 		<footer>
