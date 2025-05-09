@@ -37,7 +37,7 @@ import LayoutGuest from '../layouts/LayoutGuest.astro';
 	</article>
 	<article class="py-96 h-screen flex justify-between items-center px-40 relative">
 		<div class="relative z-10 w-full flex flex-col gap-4 p-10 rounded-2xl bg-zinc-900/80 backdrop-blur-sm border-t border-b border-b-zinc-700">
-			<h2 class="text-6xl">Opiniones de mas de 1,000 Juegos de todas las plataformas mas populares.</h2>
+			<h2 class="text-6xl">Opiniones de mas de 100 juegos de todas las plataformas existentes.</h2>
 			<div class=" flex items-center gap-4">
 				<Xbox />
 				<PlayStation />
@@ -58,8 +58,37 @@ import LayoutGuest from '../layouts/LayoutGuest.astro';
 		<figure class="w-full absolute left-0 bottom-0 flex">
 			<img src="/images/theLastOfUss.png" alt="" class="w-5/12">
 		</figure>
-		<div class="w-6/12">
-			<h2 class="text-zinc-700 font-medium text-5xl">Encuentra titulos populares como "The Last Of Us: part l"</h2>
+		<div class="relative w-6/12 flex flex-col gap-4">
+			<figure class="absolute -top-44">
+				<img src="/images/caratulaTheLast.jpg" alt="" class="w-40 rounded">
+			</figure>
+			<h2 class="text-zinc-700 font-medium text-5xl">Mira lo que la comunidad opina sobre "The Last Of Us: part l"!</h2>
+			<div class="flex gap-2">
+				<div class="bg-zinc-100 w-fit rounded-2xl p-4 flex flex-col gap-2">
+					<span class="text-zinc-500 text-xs">02 Mayo 2025</span>
+					<header class="relative flex items-center gap-2">
+						<span class=" rounded-full bg-zinc-800 flex items-center justify-center w-8 h-8">M</span>
+						<span class="text-black">Markitokun</span>
+						<span class="absolute right-2 text-2xl">👍🏼</span>
+					</header>
+					<div class="flex flex-col justify-between h-full gap-4">
+						<span class="text-sm text-zinc-700">The Last of Us es una obra maestra narrativa. El vínculo entre Joel y Ellie se siente auténtico, y el mundo postapocalíptico está bellamente construido. Es uno de los juegos más influyentes de su generación.</span>
+						<span class="text-zinc-600">12, 223 ❤️</span>
+					</div>
+				</div>
+				<div class="bg-zinc-100 w-fit rounded-2xl p-4 flex flex-col gap-2">
+					<span class="text-zinc-500 text-xs">30 Abril 2025</span>
+					<header class="relative flex items-center gap-2">
+						<span class=" rounded-full bg-zinc-800 flex items-center justify-center w-8 h-8">A</span>
+						<span class="text-black">AngelitoBB129</span>
+						<span class="absolute right-2 text-2xl">👎🏼</span>
+					</header>
+					<div class="flex flex-col justify-between h-full gap-4">
+						<span class="text-sm text-zinc-700">Aunque la historia es fuerte, la jugabilidad puede sentirse repetitiva. El ritmo a veces se ve afectado por largas secciones de sigilo y combate que no aportan tanto a la trama. </span>
+						<span class="text-zinc-600">303 ❤️</span>
+					</div>
+				</div>
+			</div>
 		</div>
 	</article>
 	<article class="py-96 h-screen bg-[#151515] flex justify-between items-center px-40 relative"></article>
