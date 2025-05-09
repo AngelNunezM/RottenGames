@@ -6,6 +6,8 @@ import Steam from '../components/icons/Steam.astro';
 import EpicGames from '../components/icons/EpicGames.astro';
 import Twitch from '../components/icons/Twitch.astro';
 import LayoutGuest from '../layouts/LayoutGuest.astro';
+
+import { SignInButton, SignedOut, SignedIn } from "@clerk/astro/components";
 ---
 
 <LayoutGuest title="Sitio Web Oficial">
@@ -19,12 +21,22 @@ import LayoutGuest from '../layouts/LayoutGuest.astro';
 				<h1 class="font-bold text-6xl text-center w-11/12 uppercase font-Cal">La mejor reseña solo puede venir de un verdadero <span class="bg-slate-300 px-2 text-black -skew-12">gamer .</span></h1>
 				<p class="text-zinc-300 w-8/12 text-center font-Inter">¿A punto de descargar un juego? Primero, descubre lo que la comunidad gamer tiene que decir. Opiniones reales, sin filtros.</p>
 				<div class="flex gap-3 mt-2">
-					<a href="" class="bg-slate-300 p-2 px-6 rounded-full text-black flex gap-2 items-center">
-						<span>Conocer ahora</span>
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-						</svg>
-					</a>
+					<SignedOut>
+						<SignInButton mode='modal' class="bg-slate-300 p-2 px-6 rounded-full text-black flex gap-2 items-center cursor-pointer">
+							<span>Iniciar sesión</span>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+							</svg>
+						</SignInButton>
+					</SignedOut>
+					<SignedIn>
+						<a href="/platform" class="bg-slate-300 p-2 px-6 rounded-full text-black flex gap-2 items-center">
+							<span>Acceder ahora</span>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+							</svg>
+						</a>
+					</SignedIn>
 					<a href="" class="border p-2 px-6 rounded-full text-zinc-300 bg-black/10 backdrop-blur-sm flex gap-2 items-center">
 						<span>Mas informacion</span>
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
@@ -36,7 +48,7 @@ import LayoutGuest from '../layouts/LayoutGuest.astro';
 		</div>
 	</article>
 	<article class="py-96 h-screen flex justify-between items-center px-40 relative">
-		<div class="relative z-10 w-full flex flex-col gap-4 p-10 rounded-2xl bg-zinc-900/80 backdrop-blur-sm border-t border-b border-b-zinc-700">
+		<div class="relative z-10 w-full flex flex-col gap-4 p-10 rounded-2xl bg-zinc-900/80 backdrop-blur-sm border-t border-t-zinc-400 border-b border-b-zinc-700">
 			<h2 class="text-6xl">Opiniones de mas de 100 juegos de todas las plataformas existentes.</h2>
 			<div class=" flex items-center gap-4">
 				<Xbox />
@@ -46,6 +58,7 @@ import LayoutGuest from '../layouts/LayoutGuest.astro';
 				<EpicGames />
 				<span class="text-zinc-300">Y muchas mas</span>
 			</div>
+			<hr class="text-zinc-600">
 			<div class="absolute p-18 -z-10 bg-slate-300/80 blur-2xl"></div>
 			<div class="absolute p-12 -z-10 right-0 bottom-0 bg-slate-300/50 blur-2xl"></div>
 		</div>
@@ -54,7 +67,7 @@ import LayoutGuest from '../layouts/LayoutGuest.astro';
 		</figure>
 		
 	</article>
-	<article class="py-[430px] h-screen bg-white flex justify-end px-36 relative">
+	<article class="py-[430px] h-screen bg-gradient-to-b from-[#151515] rounded-t-3xl via-white to-white flex justify-end px-36 relative">
 		<figure class="w-full absolute left-0 bottom-0 flex">
 			<img src="/images/theLastOfUss.png" alt="" class="w-5/12">
 		</figure>
@@ -91,6 +104,21 @@ import LayoutGuest from '../layouts/LayoutGuest.astro';
 			</div>
 		</div>
 	</article>
-	<article class="py-96 h-screen bg-[#151515] flex justify-between items-center px-40 relative"></article>
-	
+	<article class="relative p-96 h-screen bg-gradient-to-b from-[#7C4E36] via-[#EEBA80] to-white flex justify-between items-center px-32">
+		<div class="flex flex-col">
+			<h2 class="font-bold text-9xl uppercase text-zinc-900">Descubre juegos</h2>
+			<h3 class="font-bold text-8xl uppercase text-zinc-700">Conecta con gente</h3>
+			<h4 class="font-bold text-7xl uppercase text-zinc-400">Opina lo que quieras</h4>
+			<h5 class="font-bold text-5xl uppercase text-zinc-100 bg-zinc-900 p-2">hazlo, ¡ ahora mismo !</h5>
+		</div>
+		<figure class="absolute flex justify-end bottom-8 right-36">
+			<img src="/images/legueOfLeguends.png" alt="" class="w-6/12">
+		</figure>
+	</article>
+	<article class="relative py-96 h-screen bg-gradient-to-b from-white via-white to-[#151515]  flex justify-between items-center px-40 overflow-hidden">
+		<figure class="relative bottom-0 -left-10">
+			<img src="/images/forza.png" alt="" class="w-7/12">
+		</figure>
+	</article>
+	<article class="py-[430px] h-screen flex justify-end px-36 relative"></article>
 </Layout>

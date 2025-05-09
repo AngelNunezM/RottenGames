@@ -1,4 +1,6 @@
 ---
+import { SignedIn, UserButton } from "@clerk/astro/components";
+
 const { title } = Astro.props;
 ---
 <!doctype html>
@@ -16,10 +18,13 @@ const { title } = Astro.props;
 	<body class="relative">
 		<header class="px-52 absolute p-5 flex items-center justify-between w-full rounded-b-2xl">
 			<h1 class="font-medium text-2xl flex items-center uppercase">Rotten<span class="text-slate-300 text-shadow-xs text-shadow-[#473f00]">Games</span></h1>
-			<nav class="text-sm flex gap-6">
+			<nav class="text-sm flex gap-6 items-center">
 				<a href="" class="text-[#ffffff]">Inicio</a>
 				<a href="" class="text-zinc-400">Juegos</a>
 				<a href="" class="text-zinc-400">Ayuda</a>
+				<SignedIn>
+					<UserButton />
+				</SignedIn>
 			</nav>
 		</header>
 		<section class="flex flex-col">
