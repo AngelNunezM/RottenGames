@@ -1,8 +1,64 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-const user = Astro.locals.currentUser();
----
-<Layout title="Inicio">
+const user = await Astro.locals.currentUser();
 
+// Lista de juegos de ejemplo
+const juegos = [
+  { id: '1', nombre: 'The Legend of Zelda', imagen: '/zelda.jpg' },
+  { id: '2', nombre: 'Super Mario Bros', imagen: '/mario.jpg' },
+  { id: '3', nombre: 'Minecraft', imagen: '/minecraft.jpg' }
+];
+---
+
+<Layout title="Juegos">
+  <h1>Juegos</h1>
+  <div style="display: flex; gap: 2rem;">
+    {juegos.map(juego => (
+      <div style="border: 1px solid #ccc; padding: 1rem; width: 250px;">
+        <img src={juego.imagen} alt={juego.nombre} style="width: 100%;" />
+        <h2>{juego.nombre}</h2>
+        {user ? (
+          <form class="critica-form">
+            <input type="hidden" name="juego" value={juego.nombre} />
+            <textarea name="texto" placeholder="Escribe tu crítica..." required></textarea>
+            <br />
+            <button type="submit">Enviar crítica</button>
+          </form>
+        ) : (
+          <p><em>Inicia sesión para dejar una crítica.</em></p>
+        )}
+      </div>
+    ))}
+  </div>
 </Layout>
+
+<script is:inline>
+  document.querySelectorAll('.critica-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        juego: form.juego.value,
+        texto: form.texto.value
+      };
+      
+      try {
+        const res = await fetch('/api/criticas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        if (res.ok) {
+          alert('¡Crítica guardada con éxito!');
+          form.reset();
+        } else {
+          alert('Error al guardar la crítica');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error al enviar la crítica');
+      }
+    });
+  });
+</script>
