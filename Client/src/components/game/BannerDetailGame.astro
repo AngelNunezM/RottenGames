@@ -1,0 +1,28 @@
+---
+const {name, rating, background_image} = Astro.props;
+---
+<header class="relative h-96 rounded-xl">
+     <!-- Fondo blur (simula la luz desde atrás) -->
+     <div
+         style={`background-image: url('${background_image}')`}
+         class="absolute inset-0 scale-110 blur-2xl brightness-150 opacity-30 rounded-full"
+     ></div>
+
+     <!-- Contenido principal -->
+     <div class="relative h-full w-full rounded-xl overflow-hidden shadow-xl">
+     <!-- Fondo con imagen -->
+     <div
+         style={`background-image: url('${background_image}')`}
+         class="absolute inset-0 bg-cover bg-center"
+     ></div>
+
+     <!-- Capa de degradado oscuro -->
+     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+
+     <!-- Contenido -->
+     <div class="relative z-10 p-4 text-white flex flex-col justify-end h-full">
+         <h1 class="text-4xl font-bold">{name}</h1>
+         <span class="text-lg">🔥 {rating}</span>
+     </div>
+     </div>
+</header>

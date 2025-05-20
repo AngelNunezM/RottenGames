@@ -1,64 +1,46 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { getAllGames } from "../../services/apiClient";
+import {results} from '../../data';
 
 const user = await Astro.locals.currentUser();
 
-// Lista de juegos de ejemplo
-const juegos = [
-  { id: '1', nombre: 'The Legend of Zelda', imagen: '/zelda.jpg' },
-  { id: '2', nombre: 'Super Mario Bros', imagen: '/mario.jpg' },
-  { id: '3', nombre: 'Minecraft', imagen: '/minecraft.jpg' }
-];
+const games = results
 ---
 
-<Layout title="Juegos">
-  <h1>Juegos</h1>
-  <div style="display: flex; gap: 2rem;">
-    {juegos.map(juego => (
-      <div style="border: 1px solid #ccc; padding: 1rem; width: 250px;">
-        <img src={juego.imagen} alt={juego.nombre} style="width: 100%;" />
-        <h2>{juego.nombre}</h2>
-        {user ? (
-          <form class="critica-form">
-            <input type="hidden" name="juego" value={juego.nombre} />
-            <textarea name="texto" placeholder="Escribe tu crítica..." required></textarea>
-            <br />
-            <button type="submit">Enviar crítica</button>
-          </form>
-        ) : (
-          <p><em>Inicia sesión para dejar una crítica.</em></p>
-        )}
+<Layout title="Inicio">
+  <main class="p-4 flex flex-col gap-7">
+    <header class="flex items-center justify-between">
+      <div class="p-2 bg-[#202024] flex items-center gap-2 rounded-xl pr-4 text-zinc-300 w-5/12">
+        <label for="search">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          </svg>
+        </label>
+        <input id="search" type="text" class="bg-transparent outline-none w-full" placeholder="Buscar por el nombre">
       </div>
-    ))}
-  </div>
-</Layout>
-
-<script is:inline>
-  document.querySelectorAll('.critica-form').forEach(form => {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = {
-        juego: form.juego.value,
-        texto: form.texto.value
-      };
-      
-      try {
-        const res = await fetch('/api/criticas', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        
-        if (res.ok) {
-          alert('¡Crítica guardada con éxito!');
-          form.reset();
-        } else {
-          alert('Error al guardar la crítica');
+      <nav class="text-zinc-300 flex items-center gap-4">
+        <span>Descubre</span>
+        <span class="text-zinc-500">Novedades</span>
+      </nav>
+    </header>
+    <section class="flex flex-col gap-4">
+      <h2>Encuentra el juego que buscas</h2>
+      <article class="grid lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 gap-4">
+        {
+          games?.map(game => (
+            <a href={`/platform/games/${game?.slug}`} class="flex flex-col gap-4 transition-all ease-linear cursor-pointer hover:brightness-100 brightness-90">
+              <picture class="w-full">
+                <img src={game?.background_image} alt={`image_${game?.name}`} class="bg-cover bg-center rounded-lg flex h-40 w-full"/>
+              </picture>
+              <div>
+                <h3>{game?.name}</h3>
+                <span class="text-xs text-zinc-400">{game?.released}</span>
+              </div>
+            </a>
+          ))
         }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Error al enviar la crítica');
-      }
-    });
-  });
-</script>
+      </article>
+    </section>
+  </main>
+</Layout>
